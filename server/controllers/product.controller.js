@@ -49,8 +49,8 @@ module.exports.updateProduct = (req, res) => {
         req.body,
         {new: true, runValidators: true}
     )
-        .then(updatedQuote => {
-            res.json({results: updatedQuote})
+        .then(updatedProduct => {
+            res.json({results: updatedProduct})
         })
         .catch(err =>{
             res.json({msg: "Something went wrong", error: err})
