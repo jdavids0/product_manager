@@ -9,7 +9,7 @@ import EditProduct from './components/EditProduct'
 
 function App() {
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [newProductToggle, setNewProductToggle] = useState(false);
 
   return (
     <BrowserRouter>
@@ -17,9 +17,9 @@ function App() {
         <h1>Product Manager</h1>
         <Switch>
           <Route exact path='/'>
-            <ProductForm toggle={isSubmitted} />
+            <ProductForm newProductToggle={newProductToggle} setNewProductToggle={setNewProductToggle} />
             <hr />
-            <AllProducts toggle={isSubmitted} />
+            <AllProducts newProductToggle={newProductToggle} />
           </Route>
           {/* could say :id or :_id here */}
           <Route exact path='/products/:_id'>

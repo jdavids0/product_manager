@@ -33,13 +33,14 @@ const ProductForm = (props) => {
                 // res.data.error.errors == actual validation errors
                 setErrors(res.data.error.errors);
             }
-            // if there are no errors, reset state variable to clear out form
+            // if there are no errors and product successfully created, reset state variable to clear out form
             else {
-            setFormInfo({
-                title: '',
-                description: '',
-                price: '',
-                })
+                setFormInfo({
+                    title: '',
+                    description: '',
+                    price: '',
+                    })
+                props.setNewProductToggle(!props.NewProductToggle);
             }
         })
         .catch(err => console.log(err))

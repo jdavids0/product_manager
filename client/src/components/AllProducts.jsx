@@ -4,6 +4,7 @@ import {Link, useParams} from 'react-router-dom';
 
 const AllProducts = (props) => {
     const [productList, setProductList] = useState([]);
+    const [deleteToggle, setDeleteToggle] = useState(false);
     const {_id} = useParams();
 
     useEffect(() => {
@@ -15,16 +16,18 @@ const AllProducts = (props) => {
             .catch(err => {
                 console.log('error: ', err);
             })
-    },[props.toggle])
+    },[deleteToggle, props.newProductToggle])
 
     const deleteProduct = (_id) => {
         axios.delete(`http://localhost:8000/api/products/${_id}`)
             .then(res => {
                 console.log(res.data.results)
-                let filteredList = productList.filter((productObj, idx) => {
+                setDeleteToggle(!deleteToggle);
+                // don't need this, using deleteToggle state variable instead
+                /* let filteredList = productList.filter((productObj, idx) => {
                     return idx != _id;
                 })
-                setProductList(filteredList);
+                setProductList(filteredList); */
             })
             .catch(err => console.log(err));
     }
